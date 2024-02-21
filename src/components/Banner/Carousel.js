@@ -25,7 +25,7 @@ function Carousel() {
                 return(
             <Link className='carouselItem' to={`/coins/${coin.id}`}><img src={coin?.image} alt={coin.name} height='80' style={{marginBottom:10}}></img>
             <span>{coin?.symbol}&nbsp;</span>
-            <span style={{color:profit>0?'rgba(14,203,129':'red'}}>{profit && '+'}{coin?.price_change_percentage_24h?.toFixed(2)}</span>
+            <span style={{color:profit>0?'rgba(14,203,129':'red'}}>{profit && '+'}{coin?.price_change_percentage_24h?.toFixed(2)}%</span>
             <span style={{fontSize:22, fontWeight:500}}>{symbol}{numberWithCommas(coin?.current_price.toFixed(2))}</span>
             </Link>
         )
