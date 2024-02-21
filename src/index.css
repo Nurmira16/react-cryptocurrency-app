@@ -40,7 +40,6 @@
   }
   .container{
     display: flex;
-    flex-direction: column;
     align-items: center;
   }
   .coinInfo{
@@ -54,4 +53,32 @@
     font-weight: bold;
     font-family: "Montserrat";
     margin-bottom: 20px;
+  }
+  .marketData{
+    align-self:start;
+    padding: 25px;
+    padding-top: 10px;
+    width: 100%;
+  }
+  @media (max-width:1200px) {
+    .marketData{
+      display: flex;
+      align-items: start;
+      justify-content: space-around;
+    }
+    
+  }
+  @media (max-width:800px) {
+    .marketData{
+      display: flex;
+   flex-direction: column;
+  align-items:  center;
+    }
+    
+  }
+  @media (max-width:600px) {
+    .marketData{
+    align-items: start;
+    }
+    
   }
