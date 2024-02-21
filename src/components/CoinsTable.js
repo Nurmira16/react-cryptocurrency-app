@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { CryptoState } from '../CryptoContext'
 import { CoinList } from '../config/api'
-import { Container, LinearProgress, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, ThemeProvider, Typography, createTheme } from '@mui/material'
+import { Container, LinearProgress, Pagination, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, ThemeProvider, Typography, createTheme } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { numberWithCommas } from './Banner/Carousel'
 
@@ -11,6 +11,7 @@ function CoinsTable() {
     const[loading,setLoading]=useState(false)
     const navigate=useNavigate()
     const [search,setSearch]=useState("")
+    const[page,setPage]=useState(1)
 
     const {currency,symbol}=CryptoState()
   
@@ -72,7 +73,7 @@ function CoinsTable() {
           ))}
         </TableRow>
       </TableHead>
-      <TableBody>{handleSearch().map(row=>{
+      <TableBody>{handleSearch().slice((page-1)*10, (page-1)*10+10).map(row=>{
         const profit=row.price_change_percentage_24h>0;
         return(
           <TableRow onClick={()=>navigate(`/coins/${row.id}`)} className='row' key={row.name}>
@@ -95,6 +96,10 @@ function CoinsTable() {
     </Table>
     )}
     </TableContainer>
+    <Pagination style={{background:'#fff', padding:20,width:'100%',display:'flex',justifyContent:'center'}} count={(handleSearch()?.length/10).toFixed(0)} onChange={(_,value)=>{
+      setPage(value);
+      window.scroll(0,450)
+    }}></Pagination>
     </Container>
   </ThemeProvider>
   )
